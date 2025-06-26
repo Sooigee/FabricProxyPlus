@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(gradle build:*)",
+      "Bash(./gradlew:*)",
+      "Bash(jar:*)",
+      "Bash(find:*)",
+      "Bash(gradle clean:*)"
+    ],
+    "deny": []
+  }
+}

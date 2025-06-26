@@ -1,0 +1,61 @@
+FABRICPROXYPLUS TEST CHECKLIST
+==============================
+
+[ ] 1. Build the mod:
+    gradle build
+
+[ ] 2. Install the mod:
+    - Copy from build/libs/ to .minecraft/mods/
+    - Ensure Fabric API is installed
+
+[ ] 3. Start test servers:
+    - BungeeCord proxy on port 25577
+    - Backend server 1 on port 25566
+    - Backend server 2 on port 25567
+
+[ ] 4. Launch Minecraft and connect to localhost:25577
+
+[ ] 5. Check initial connection:
+    - Connected successfully?
+    - No errors in game log?
+
+[ ] 6. Test /servers command:
+    - Shows list of servers?
+    - Shows lobby and survival?
+
+[ ] 7. Test /server command:
+    - Shows current server?
+
+[ ] 8. Test server switching:
+    - /server survival
+    - Did you switch servers?
+    - No disconnect?
+
+[ ] 9. Test /glist:
+    - Shows player counts?
+
+[ ] 10. Check TAB list:
+    - Shows [servername] in header?
+
+[ ] 11. Enable debug mode:
+    - Edit config/fabricproxyplus.json
+    - Set enableDebugLogging to true
+    - Restart and check logs
+
+[ ] 12. Test rapid server switching:
+    - Switch between servers 5 times quickly
+    - Any issues or lag?
+
+SIGNS IT'S WORKING:
+- Can see and switch between servers
+- Commands respond with server info
+- No disconnects when switching
+- Tab list shows current server
+- Debug logs show "Modified handshake address"
+
+SIGNS IT'S NOT WORKING:
+- Commands do nothing
+- Can't switch servers
+- Get disconnected when trying to switch
+- No server info in commands
+- Errors in console about plugin channels

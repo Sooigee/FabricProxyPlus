@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "soog.com.fabricproxyplus.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ClientConnectionMixin",
+    "ConnectionMixin",
+    "GameProfileMixin",
+    "HandshakeC2SPacketAccessor",
+    "HandshakeC2SPacketMixin",
+    "MessageValidatorMixin",
+    "PlayerManagerMixin",
+    "PlayerPublicKeyMixin",
+    "ServerConfigurationNetworkHandlerMixin",
+    "ServerHandshakeNetworkHandlerMixin",
+    "ServerLoginNetworkHandlerMixin",
+    "ServerNetworkIoMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

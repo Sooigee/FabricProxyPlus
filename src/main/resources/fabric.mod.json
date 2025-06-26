@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "fabricproxyplus",
+  "version": "${version}",
+  "name": "FabricProxyPlus",
+  "description": "Adds BungeeCord support to Fabric servers",
+  "authors": ["Sooigee"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/fabricproxyplus/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "soog.com.fabricproxyplus.Fabricproxyplus"
+    ]
+  },
+  "mixins": [
+    "fabricproxyplus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

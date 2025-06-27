@@ -10,3 +10,7 @@
 - Correct player IP and UUID passthrough  
 - Plug-and-play with minimal setup  
 - Clean, updated codebase built for modern Fabric
+
+- ## ⬆️ Versions currently supported:
+
+- fabric 1.21.6

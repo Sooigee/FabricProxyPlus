@@ -4,13 +4,10 @@
 
 > ⚠️ This mod does **not** use any code from the original FabricProxy.
 
-## 🔧 Features
+## Notice
 
-- BungeeCord IP forwarding support  
-- Correct player IP and UUID passthrough  
-- Plug-and-play with minimal setup  
-- Clean, updated codebase built for modern Fabric
+- This mod only supports bungee, if you want velocity, I advise you checkout [FabricProxy-Lite](https://github.com/OKTW-Network/FabricProxy-Lite).
 
-- ## ⬆️ Versions currently supported:
+- ## Versions currently supported:
 
 - fabric 1.21.6

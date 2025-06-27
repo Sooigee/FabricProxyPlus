@@ -36,20 +36,25 @@ public class PlayerManagerMixin {
                     player.getGameProfile().getProperties().clear();
                     player.getGameProfile().getProperties().putAll(spoofedProfile.getProperties());
                     
-                    LOGGER.info("Applied {} BungeeCord properties to player {} on connect", 
-                        spoofedProfile.getProperties().size(), player.getName().getString());
+                    // Always show basic join message for BungeeCord players
+                    LOGGER.info("Player {} joined through BungeeCord", player.getName().getString());
                     
-                    // Log details about the textures property
-                    if (player.getGameProfile().getProperties().containsKey("textures")) {
-                        var textureProps = player.getGameProfile().getProperties().get("textures");
-                        if (!textureProps.isEmpty()) {
-                            var prop = textureProps.iterator().next();
-                            LOGGER.info("Player {} has texture property with signature: {}", 
-                                player.getName().getString(), prop.hasSignature());
+                    if (config.isEnableDebugLogging()) {
+                        LOGGER.info("Applied {} BungeeCord properties to player {} on connect", 
+                            spoofedProfile.getProperties().size(), player.getName().getString());
+                        
+                        // Log details about the textures property
+                        if (player.getGameProfile().getProperties().containsKey("textures")) {
+                            var textureProps = player.getGameProfile().getProperties().get("textures");
+                            if (!textureProps.isEmpty()) {
+                                var prop = textureProps.iterator().next();
+                                LOGGER.info("Player {} has texture property with signature: {}", 
+                                    player.getName().getString(), prop.hasSignature());
+                            }
+                        } else {
+                            LOGGER.warn("No texture property found for player {} after applying BungeeCord properties!", 
+                                player.getName().getString());
                         }
-                    } else {
-                        LOGGER.warn("No texture property found for player {} after applying BungeeCord properties!", 
-                            player.getName().getString());
                     }
                 }
                 

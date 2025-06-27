@@ -8,6 +8,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import soog.com.fabricproxyplus.config.ProxyConfig;
 
 public class ProfilePropertyParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProfilePropertyParser.class);
@@ -28,9 +29,11 @@ public class ProfilePropertyParser {
                     profile.getProperties().put(name, new Property(name, value));
                 }
                 
-                LOGGER.info("Added property '{}' to profile {} (has signature: {})", name, profile.getName(), signature != null);
-                if (name.equals("textures")) {
-                    LOGGER.info("Texture value: {}", value.substring(0, Math.min(value.length(), 50)) + "...");
+                if (ProxyConfig.getInstance().isEnableDebugLogging()) {
+                    LOGGER.info("Added property '{}' to profile {} (has signature: {})", name, profile.getName(), signature != null);
+                    if (name.equals("textures")) {
+                        LOGGER.info("Texture value: {}", value.substring(0, Math.min(value.length(), 50)) + "...");
+                    }
                 }
             }
         } catch (Exception e) {

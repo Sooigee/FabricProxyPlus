@@ -9,7 +9,6 @@
     "GameProfileMixin",
     "HandshakeC2SPacketAccessor",
     "HandshakeC2SPacketMixin",
-    "MessageValidatorMixin",
     "PlayerManagerMixin",
     "PlayerPublicKeyMixin",
     "ServerConfigurationNetworkHandlerMixin",

@@ -34,19 +34,25 @@ public abstract class ServerLoginNetworkHandlerMixin {
     
     @Inject(method = "onHello", at = @At("HEAD"))
     private void checkBungeeCordHandshake(CallbackInfo ci) {
-        LOGGER.info("=== LOGIN HELLO DEBUG ===");
-        LOGGER.info("Login hello received from: {}", connection.getAddress());
-        
         ProxyConfig config = ProxyConfig.getInstance();
+        
+        if (config.isEnableDebugLogging()) {
+            LOGGER.info("=== LOGIN HELLO DEBUG ===");
+            LOGGER.info("Login hello received from: {}", connection.getAddress());
+        }
         
         if (config.isEnableBungeeCord()) {
             ConnectionDataAccess connectionAccess = (ConnectionDataAccess) connection;
             
             if (connectionAccess.getBungeeCordData() != null) {
-                LOGGER.info("BungeeCord data exists: {}", connectionAccess.getBungeeCordData().isBungeeCordConnection());
+                if (config.isEnableDebugLogging()) {
+                    LOGGER.info("BungeeCord data exists: {}", connectionAccess.getBungeeCordData().isBungeeCordConnection());
+                }
                 
                 if (connectionAccess.getBungeeCordData().isBungeeCordConnection()) {
-                    LOGGER.info("This IS a BungeeCord connection");
+                    if (config.isEnableDebugLogging()) {
+                        LOGGER.info("This IS a BungeeCord connection");
+                    }
                 } else {
                     LOGGER.warn("This is NOT a BungeeCord connection but BungeeCord mode is enabled");
                 }
@@ -69,8 +75,10 @@ public abstract class ServerLoginNetworkHandlerMixin {
                     profile = new GameProfile(spoofedProfile.getId(), profile.getName());
                     profile.getProperties().putAll(spoofedProfile.getProperties());
                     
-                    LOGGER.info("Updated login profile for {} with {} BungeeCord properties", 
-                        profile.getName(), spoofedProfile.getProperties().size());
+                    if (config.isEnableDebugLogging()) {
+                        LOGGER.info("Updated login profile for {} with {} BungeeCord properties", 
+                            profile.getName(), spoofedProfile.getProperties().size());
+                    }
                 }
             }
         }

@@ -30,7 +30,9 @@ public class ServerPlayNetworkHandlerMixin {
         ProxyConfig config = ProxyConfig.getInstance();
         
         if (config.isEnableBungeeCord() && config.isEnableIpForwarding()) {
-            LOGGER.info("Skipping player session packet for player: {} in BungeeCord mode", player.getName().getString());
+            if (config.isEnableDebugLogging()) {
+                LOGGER.info("Skipping player session packet for player: {} in BungeeCord mode", player.getName().getString());
+            }
             // Just cancel the packet processing to avoid the NPE
             ci.cancel();
         }

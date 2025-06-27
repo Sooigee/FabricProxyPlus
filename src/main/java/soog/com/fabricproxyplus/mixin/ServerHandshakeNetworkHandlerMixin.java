@@ -33,18 +33,20 @@ public class ServerHandshakeNetworkHandlerMixin {
             HandshakeC2SPacketAccessor accessor = (HandshakeC2SPacketAccessor) (Object) packet;
             String address = accessor.getAddress();
             
-            LOGGER.info("=== HANDSHAKE DEBUG ===");
-            LOGGER.info("Handshake received with address: '{}'", address);
-            LOGGER.info("Address length: {}, contains null char: {}", address.length(), address.contains("\0"));
-            LOGGER.info("BungeeCord mode enabled: {}", config.isEnableBungeeCord());
-            
-            // Log raw bytes for debugging
-            byte[] addressBytes = address.getBytes();
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : addressBytes) {
-                hexString.append(String.format("%02X ", b));
+            if (config.isEnableDebugLogging()) {
+                LOGGER.info("=== HANDSHAKE DEBUG ===");
+                LOGGER.info("Handshake received with address: '{}'", address);
+                LOGGER.info("Address length: {}, contains null char: {}", address.length(), address.contains("\0"));
+                LOGGER.info("BungeeCord mode enabled: {}", config.isEnableBungeeCord());
+                
+                // Log raw bytes for debugging
+                byte[] addressBytes = address.getBytes();
+                StringBuilder hexString = new StringBuilder();
+                for (byte b : addressBytes) {
+                    hexString.append(String.format("%02X ", b));
+                }
+                LOGGER.info("Address bytes (hex): {}", hexString.toString());
             }
-            LOGGER.info("Address bytes (hex): {}", hexString.toString());
             
             if (config.isEnableBungeeCord()) {
                 // Check if this is a BungeeCord handshake
@@ -86,6 +88,9 @@ public class ServerHandshakeNetworkHandlerMixin {
                                 }
                                 
                                 connectionAccess.getBungeeCordData().setSpoofedProfile(spoofedProfile);
+                                
+                                // Always show basic info for BungeeCord connections
+                                LOGGER.info("BungeeCord connection detected from {}", playerIp);
                                 
                                 if (config.isEnableDebugLogging()) {
                                     LOGGER.info("BungeeCord handshake with IP forwarding - Host: {}, Real IP: {}, UUID: {}", 
